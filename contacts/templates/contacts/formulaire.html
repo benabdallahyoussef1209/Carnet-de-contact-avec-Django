@@ -1,0 +1,78 @@
+{% extends 'contacts/base.html' %}
+
+{% block titre %}{{ titre }}{% endblock %}
+
+{% block contenu %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+        <a href="{% url 'liste_contacts' %}" class="btn btn-outline-secondary btn-sm mb-3">
+            <i class="bi bi-arrow-left me-1"></i>Retour
+        </a>
+
+        <div class="card">
+            <div class="card-header bg-white py-3">
+                <h4 class="fw-bold mb-0">{{ titre }}</h4>
+            </div>
+            <div class="card-body p-4">
+
+                <!-- action="" = soumet au même URL (POST vers ajouter/ ou modifier/) -->
+                <form method="POST" action="">
+                    {% csrf_token %} <!-- Obligatoire : protection contre les attaques CSRF -->
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Prénom *</label>
+                            {{ form.prenom }}
+                            {% if form.prenom.errors %}
+                            <div class="text-danger small mt-1">{{ form.prenom.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Nom *</label>
+                            {{ form.nom }}
+                            {% if form.nom.errors %}
+                            <div class="text-danger small mt-1">{{ form.nom.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Email *</label>
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                            <div class="text-danger small mt-1">{{ form.email.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Téléphone</label>
+                            {{ form.telephone }}
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Adresse</label>
+                            {{ form.adresse }}
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary flex-fill">
+                            <i class="bi bi-check-lg me-1"></i>{{ bouton }}
+                        </button>
+                        <a href="{% url 'liste_contacts' %}" class="btn btn-outline-secondary">
+                            Annuler
+                        </a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'contacts/base.html' %}
+
+{% block titre %}{{ contact }}{% endblock %}
+
+{% block contenu %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+        <!-- Bouton retour -->
+        <a href="{% url 'liste_contacts' %}" class="btn btn-outline-secondary btn-sm mb-3">
+            <i class="bi bi-arrow-left me-1"></i>Retour à la liste
+        </a>
+
+        <div class="card">
+            <div class="card-body p-4">
+
+                <!-- Avatar et nom -->
+                <div class="text-center mb-4">
+                    <div class="avatar mx-auto mb-3" style="width:72px;height:72px;font-size:1.8rem;">
+                        {{ contact.prenom.0 }}{{ contact.nom.0 }}
+                    </div>
+                    <h3 class="fw-bold mb-0">{{ contact }}</h3>
+                    <small class="text-muted">Ajouté le {{ contact.date_creation|date:"d/m/Y" }}</small>
+                </div>
+
+                <hr>
+
+                <!-- Informations -->
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="text-muted small fw-semibold">
+                            <i class="bi bi-envelope me-1"></i>EMAIL
+                        </label>
+                        <p class="mb-0">{{ contact.email }}</p>
+                    </div>
+
+                    {% if contact.telephone %}
+                    <div class="col-12">
+                        <label class="text-muted small fw-semibold">
+                            <i class="bi bi-telephone me-1"></i>TÉLÉPHONE
+                        </label>
+                        <p class="mb-0">{{ contact.telephone }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if contact.adresse %}
+                    <div class="col-12">
+                        <label class="text-muted small fw-semibold">
+                            <i class="bi bi-geo-alt me-1"></i>ADRESSE
+                        </label>
+                        <p class="mb-0">{{ contact.adresse|linebreaksbr }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+            </div>
+
+            <!-- Actions -->
+            <div class="card-footer bg-transparent d-flex gap-2">
+                <a href="{% url 'modifier_contact' contact.pk %}" class="btn btn-primary flex-fill">
+                    <i class="bi bi-pencil me-1"></i>Modifier
+                </a>
+                <a href="{% url 'supprimer_contact' contact.pk %}" class="btn btn-outline-danger">
+                    <i class="bi bi-trash me-1"></i>Supprimer
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
