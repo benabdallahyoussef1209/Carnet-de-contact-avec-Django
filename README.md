@@ -1,8 +1,8 @@
-# 📒 Gestion de Contacts — Django
+#  Gestion de Contacts — Django
 
 Un projet Django simple et complet pour gérer vos contacts.
 
-## 🚀 Lancer le projet
+##  Lancer le projet
 
 ### 1. Installer Django
 ```bash
@@ -30,7 +30,7 @@ python manage.py runserver
 
 ---
 
-## 📁 Structure du projet
+##  Structure du projet
 
 ```
 contacts_project/
@@ -58,7 +58,7 @@ contacts_project/
 
 ---
 
-## ✨ Fonctionnalités
+##  Fonctionnalités
 
 | Fonctionnalité | URL |
 |---|---|
@@ -71,7 +71,7 @@ contacts_project/
 
 ---
 
-## 🧩 Concepts Django utilisés
+##  Concepts Django utilisés
 
 - **Model** : définit la structure des données (Contact)
 - **View** : contient la logique métier (CRUD)
